@@ -27,4 +27,35 @@ CREATE TABLE IF NOT EXISTS `pobratimi` (
 	`idB`	INTEGER,
 	PRIMARY KEY(`id`)
 );
+CREATE TABLE IF NOT EXISTS `owner` (
+	`id`	INTEGER,
+	`first_name`	TEXT,
+	`last_name`	TEXT,
+	`date_of_birth` DATE,
+	`upin` INTEGER,
+	`adress` TEXT,
+	`phone_number` TEXT,
+	PRIMARY KEY(`id`)
+);
+CREATE TABLE IF NOT EXISTS `vehicle` (
+	`id`	INTEGER,
+	`plates`	TEXT,
+	`model`	TEXT,
+	`manufacturer` TEXT,
+	`category` TEXT,
+	`owner_id` INTEGER,
+	PRIMARY KEY(`id`)
+);
+CREATE TABLE IF NOT EXISTS `checkup` (
+	`id`	INTEGER,
+	`vehicle_id` INTEGER,
+	`checkup_time`	DATE,
+	`passed_engine` BOOLEAN,
+	`passed_brakes` BOOLEAN,
+	`passed_emissions` BOOLEAN,
+	`passed_accumulator` BOOLEAN,
+	`passed_electronics` BOOLEAN,
+	`passed_lighting` BOOLEAN,
+	PRIMARY KEY(`id`)
+);
 COMMIT;
