@@ -28,11 +28,11 @@ public class GlavnaController {
     public TableColumn colGradNaziv;
     public TableColumn colGradStanovnika;
     public TableColumn<Grad,String> colGradDrzava;
-    private GeografijaDAO dao;
+    private VehiclesDAO dao;
     private ObservableList<Grad> listGradovi;
 
     public GlavnaController() {
-        dao = GeografijaDAO.getInstance();
+        dao = VehiclesDAO.getInstance();
         listGradovi = FXCollections.observableArrayList(dao.gradovi());
     }
 
@@ -153,9 +153,9 @@ public class GlavnaController {
 
     // Metoda za potrebe testova, vraća bazu u polazno stanje
     public void resetujBazu() {
-        GeografijaDAO.removeInstance();
+        VehiclesDAO.removeInstance();
         File dbfile = new File("baza.db");
         dbfile.delete();
-        dao = GeografijaDAO.getInstance();
+        dao = VehiclesDAO.getInstance();
     }
 }

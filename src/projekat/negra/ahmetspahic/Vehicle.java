@@ -14,6 +14,46 @@ public class Vehicle {
     private VehicleOwner owner;
     private ArrayList<VehicleCheckup> checkups;
 
+    public Vehicle(int id, String plates, String model, String manufacturer, Category category, VehicleOwner owner) {
+        this.id = id;
+        this.plates = plates;
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.category = category;
+        this.owner = owner;
+        this.checkups = new ArrayList<>();
+    }
+
+    public Vehicle(int id, String plates, String model, String manufacturer, String category, VehicleOwner owner) throws WrongCategoryException {
+        this.id = id;
+        this.plates = plates;
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.category = stringToCategory(category);
+        this.owner = owner;
+        this.checkups = new ArrayList<>();
+    }
+
+    private Category stringToCategory(String category) throws WrongCategoryException {
+        if(category.equals("A")){
+            return Category.A;
+        }else if(category.equals("B")){
+            return Category.B;
+        }else if(category.equals("C")){
+            return Category.C;
+        }else if(category.equals("D")){
+            return Category.D;
+        }else if(category.equals("BE")){
+            return Category.BE;
+        }else if(category.equals("CE")){
+            return Category.CE;
+        }else if(category.equals("DE")){
+            return Category.DE;
+        }else{
+            throw new WrongCategoryException("Please, enter value category");
+        }
+    }
+
     public Vehicle() {
     }
 
