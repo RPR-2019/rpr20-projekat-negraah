@@ -6,6 +6,7 @@ public class Vehicle {
     public enum Category{
         A, B, C, D, BE, CE, DE
     }
+    private int id;
     private String plates;
     private String model;
     private String manufacturer;
@@ -16,13 +17,22 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String plates, String model, String manufacturer, Category category, VehicleOwner owner, ArrayList<VehicleCheckup> checkups) {
+    public Vehicle(int id, String plates, String model, String manufacturer, Category category, VehicleOwner owner, ArrayList<VehicleCheckup> checkups) {
+        this.id = id;
         this.plates = plates;
         this.model = model;
         this.manufacturer = manufacturer;
         this.category = category;
         this.owner = owner;
         this.checkups = checkups;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPlates() {

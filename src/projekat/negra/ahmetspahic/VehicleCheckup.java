@@ -3,6 +3,7 @@ package projekat.negra.ahmetspahic;
 import java.time.LocalDateTime;
 
 public class VehicleCheckup {
+    private int id;
     private Vehicle vehicle;
     private LocalDateTime checkupTime;
     private boolean passedEngine;
@@ -15,7 +16,8 @@ public class VehicleCheckup {
     public VehicleCheckup() {
     }
 
-    public VehicleCheckup(Vehicle vehicle, LocalDateTime checkupTime, boolean passedEngine, boolean passedBrakes, boolean passedEmissions, boolean passedAccumulator, boolean passedElectronics, boolean passedLighting) {
+    public VehicleCheckup(int id, Vehicle vehicle, LocalDateTime checkupTime, boolean passedEngine, boolean passedBrakes, boolean passedEmissions, boolean passedAccumulator, boolean passedElectronics, boolean passedLighting) {
+        this.id = id;
         this.vehicle = vehicle;
         this.checkupTime = checkupTime;
         this.passedEngine = passedEngine;
@@ -24,6 +26,14 @@ public class VehicleCheckup {
         this.passedAccumulator = passedAccumulator;
         this.passedElectronics = passedElectronics;
         this.passedLighting = passedLighting;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Vehicle getVehicle() {
