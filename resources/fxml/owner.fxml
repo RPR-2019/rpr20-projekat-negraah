@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projekat.negra.ahmetspahic.VehicleOwnerController">
     <center>
-        <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+        <GridPane fx:id="glavni" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
                 <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
@@ -27,13 +27,13 @@
                 <Label text="Upin:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="Adress:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label text="Date of birth:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="imeField" GridPane.columnIndex="2" />
-                <TextField fx:id="prezimeField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <TextField fx:id="mailField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <TextField fx:id="userField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <TextField fx:id="firstNameField" GridPane.columnIndex="2" />
+                <TextField fx:id="lastNameField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <TextField fx:id="upinField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <TextField fx:id="adressField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label layoutX="263.0" layoutY="157.0" text="Phone number:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="mailField1" layoutX="349.0" layoutY="83.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="mailField11" layoutX="349.0" layoutY="153.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField layoutX="349.0" layoutY="83.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="phoneField" layoutX="349.0" layoutY="153.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             </children>
             <BorderPane.margin>
                 <Insets />

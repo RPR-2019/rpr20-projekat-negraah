@@ -1,27 +1,30 @@
 package projekat.negra.ahmetspahic;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.time.LocalDate;
 
 public class VehicleOwner {
     private int id;
-    private String firstName;
-    private String lastName;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
     private LocalDate dateOfBirth;
-    private Integer upin; //Unique Personal Identification Number
-    private String adress;
-    private String phoneNumber;
+    private SimpleStringProperty upin; //Unique Personal Identification Number
+    private SimpleStringProperty adress;
+    private SimpleStringProperty phoneNumber;
 
     public VehicleOwner() {
     }
 
     public VehicleOwner(int id, String firstName, String lastName, LocalDate dateOfBirth, Integer upin, String adress, String phoneNumber) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
         this.dateOfBirth = dateOfBirth;
-        this.upin = upin;
-        this.adress = adress;
-        this.phoneNumber = phoneNumber;
+        this.upin = new SimpleStringProperty(upin.toString());
+        this.adress = new SimpleStringProperty(adress);
+        this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 
     public int getId() {
@@ -33,19 +36,19 @@ public class VehicleOwner {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstName.get();
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName.set(firstName);
     }
 
     public String getLastName() {
-        return lastName;
+        return lastName.get();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName.set(lastName);
     }
 
     public LocalDate getDateOfBirth() {
@@ -57,26 +60,33 @@ public class VehicleOwner {
     }
 
     public Integer getUpin() {
-        return upin;
+        return Integer.valueOf(upin.get());
     }
 
     public void setUpin(Integer upin) {
-        this.upin = upin;
+        this.upin.set(upin.toString());
     }
 
     public String getAdress() {
-        return adress;
+        return adress.get();
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.adress.set(adress);
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumber.get();
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber.set(phoneNumber);
     }
+    
+    public SimpleStringProperty firstNameProperty(){return firstName;}
+    public SimpleStringProperty lastNameProperty(){return lastName;}
+    public SimpleStringProperty upinProperty(){return upin;}
+    public SimpleStringProperty adressProperty(){return adress;}
+    public SimpleStringProperty phoneProperty(){return phoneNumber;}
+
 }
