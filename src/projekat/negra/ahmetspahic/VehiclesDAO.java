@@ -1,11 +1,13 @@
 package projekat.negra.ahmetspahic;
 
+import javax.xml.transform.Result;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class VehiclesDAO {
     private static VehiclesDAO instance;
@@ -17,9 +19,9 @@ public class VehiclesDAO {
 
 
     private PreparedStatement addVehicleQuery, getVehicleQuery, getVehiclesQuery, getVehiclesByOwnerQuery, getVehicleIdQuery, updateVehicleQuery,
-            deleteVehicleQuery, deleteVehiclesByOwnerQuery, deleteVehiclesQuery, addOwnerQuery, getOwnerQuery, getOwnerByVehicleQuery, getOwnersQuery,
-            getOwnerIdQuery, updateOwnerQuery, deleteOwnerQuery, deleteOwnersQuery, addCheckupQuery, getCheckupQuery, getCheckupsQuery, getCheckupsByVehicleQuery,
-            getCheckupIdQuery, updateCheckupQuery, deleteCheckupQuery, deleteCheckupByVehicleQuery;
+            deleteVehicleByOwnerQuery, deleteVehicleQuery, deleteVehiclesByOwnerQuery, deleteVehiclesQuery, addOwnerQuery, getOwnerQuery,
+            getOwnersQuery, getOwnerIdQuery, updateOwnerQuery, deleteOwnerQuery, deleteOwnersQuery, addCheckupQuery, getCheckupQuery,
+            getCheckupsQuery, getCheckupsByVehicleQuery, getCheckupIdQuery, updateCheckupQuery, deleteCheckupQuery, deleteCheckupsQuery, deleteCheckupByVehicleQuery;
 
     public static VehiclesDAO getInstance() {
         if (instance == null) instance = new VehiclesDAO();
@@ -73,6 +75,8 @@ public class VehiclesDAO {
             getVehiclesByOwnerQuery = conn.prepareStatement("SELECT * FROM vehicle WHERE owner_id=?");
             getVehicleIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM vehicle");
             updateVehicleQuery = conn.prepareStatement("UPDATE vehicle SET id=?, plates=?, model=?, manufacturer=?, category=?, owner_id=?");
+           // deleteOwnerByVehicle = conn.prepareStatement("DELETE FROM owner WHERE vehicle=?");
+            deleteVehiclesByOwnerQuery = conn.prepareStatement("DELETE FROM vehicle WHERE owner_id=?");
             deleteVehicleQuery = conn.prepareStatement("DELETE FROM vehicle WHERE id=?");
             deleteVehiclesQuery = conn.prepareStatement("DELETE FROM vehicle");
             deleteVehiclesByOwnerQuery = conn.prepareStatement("DELETE FROM vehicle WHERE owner_id=?");
@@ -89,11 +93,12 @@ public class VehiclesDAO {
             getCheckupQuery = conn.prepareStatement("SELECT * FROM chechkup WHERE id=?");
             getCheckupsQuery = conn.prepareStatement("SELECT * FROM checkup");
             getCheckupsByVehicleQuery = conn.prepareStatement("SELECT * FROM checkup WHERE vehicle_id=?");
-            //getCheckupsByOwnerQuery = conn.prepareStatement("SELECT * FROM checkup WHERE vehicle_id=?");
             getCheckupIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM checkup");
             updateCheckupQuery = conn.prepareStatement("UPDATE checkup SET id=?, vehicle_id=?, checkup_time=?, passed_engine=?, passed_brakes=?, passed_emissions=?, passed_accumulator=?, passed_electronics=?, passed_lighting=?");
-            deleteCheckupByVehicleQuery = conn.prepareStatement("DELETE FROM checkup WHERE id=?");
-            //deleteCheckupsByOwnerQuery = conn.prepareStatement("DELETE FROM checkup WHERE owner_id=?");
+            deleteCheckupByVehicleQuery = conn.prepareStatement("DELETE FROM checkup WHERE vehicle_id=?");
+            deleteCheckupsQuery = conn.prepareStatement("DELETE FROM checkup");
+            deleteCheckupQuery = conn.prepareStatement("SELECT * FROM checkup WHERE id=?");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -355,7 +360,7 @@ public class VehiclesDAO {
         return new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), owner);
     }
 
-    public ArrayList<Vehicle> getVehicleList() {
+    public ArrayList<Vehicle> getVehicles() {
         ArrayList<Vehicle> resultList = new ArrayList();
         try {
             ResultSet rs = getVehiclesQuery.executeQuery();
@@ -370,7 +375,7 @@ public class VehiclesDAO {
     }
 
     private Vehicle getVehicle(int id) throws SQLException, WrongCategoryException {
-        getVehiclesQuery.setInt(1, id);
+        getVehicleQuery.setInt(1, id);
         ResultSet rs = getVehicleQuery.executeQuery();
         if(!rs.next()) return null;
         return getVehicleFromResultSet(rs);
@@ -466,4 +471,129 @@ public class VehiclesDAO {
             e.printStackTrace();
         }
     }
+        public void deleteVehicle(int id) {
+            try {
+                getVehicleIdQuery.setInt(1, id);
+                ResultSet rs = getVehicleIdQuery.executeQuery();
+                if (!rs.next()) return;
+                Vehicle vehicle = getVehicleFromResultSet(rs);
+
+                deleteVehicleQuery.setInt(1, vehicle.getId());
+                deleteVehicleQuery.executeUpdate();
+            } catch (SQLException | WrongCategoryException e) {
+                e.printStackTrace();
+            }
+    }
+
+       public void deleteOwner(int id) {
+        try {
+            getOwnerQuery.setInt(1, id);
+            ResultSet rs = getOwnerQuery.executeQuery();
+            if (!rs.next()) return;
+            VehicleOwner owner = getOwnerFromResultSet(rs);
+
+            deleteVehiclesByOwnerQuery.setInt(1, owner.getId());
+            deleteVehiclesByOwnerQuery.executeUpdate();
+
+            deleteOwnerQuery.setInt(1, owner.getId());
+            deleteOwnerQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteVehicleCheckup(int id) {
+        try {
+            getCheckupQuery.setInt(1, id);
+            ResultSet rs = getCheckupQuery.executeQuery();
+            if (!rs.next()) return;
+            VehicleCheckup checkup = getCheckupFromResultSet(rs);
+
+            deleteCheckupByVehicleQuery.setInt(1, checkup.getId());
+            deleteCheckupByVehicleQuery.executeUpdate();
+
+            deleteCheckupQuery.setInt(1, checkup.getId());
+            deleteCheckupQuery.executeUpdate();
+        } catch (SQLException | WrongCategoryException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteVehicles(){
+        try {
+            deleteVehiclesQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteOwners(){
+        try {
+            deleteOwnersQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCheckups(){
+        try {
+            deleteCheckupsQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateVehicle(Vehicle vehicle) {
+        try {
+            updateVehicleQuery.setString(1, vehicle.getPlates());
+            updateVehicleQuery.setString(2, vehicle.getModel());
+            updateVehicleQuery.setString(3, vehicle.getManufacturer());
+            updateVehicleQuery.setString(4, vehicle.getCategory().toString());
+            updateVehicleQuery.setInt(5, vehicle.getOwner().getId());
+            updateVehicleQuery.setInt(6, vehicle.getId());
+            updateVehicleQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateVehicleOwner(VehicleOwner owner) {
+        try {
+            updateOwnerQuery.setString(1, owner.getFirstName());
+            updateOwnerQuery.setString(2, owner.getLastName());
+            updateOwnerQuery.setDate(3, Date.valueOf(owner.getDateOfBirth()));
+            updateOwnerQuery.setInt(4, owner.getUpin());
+            updateOwnerQuery.setString(5, owner.getAdress());
+            updateOwnerQuery.setString(6, owner.getPhoneNumber());
+            updateOwnerQuery.setString(7, owner.getPhoneNumber());
+            updateOwnerQuery.setInt(8, owner.getId());
+            updateOwnerQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateVehicleCheckup(VehicleCheckup checkup) {
+        try {
+            updateCheckupQuery.setInt(1, checkup.getVehicle().getId());
+            updateCheckupQuery.setDate(2, Date.valueOf(checkup.getCheckupTime()));
+            updateCheckupQuery.setBoolean(3, checkup.isPassedEngine());
+            updateCheckupQuery.setBoolean(4, checkup.isPassedBrakes());
+            updateCheckupQuery.setBoolean(5, checkup.isPassedEmissions());
+            updateCheckupQuery.setBoolean(6, checkup.isPassedAccumulator());
+            updateCheckupQuery.setBoolean(7, checkup.isPassedElectronics());
+            updateCheckupQuery.setBoolean(8, checkup.isPassedLighting());
+            updateCheckupQuery.setInt(9, checkup.getId());
+
+            updateCheckupQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

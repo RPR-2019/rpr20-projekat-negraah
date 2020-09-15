@@ -14,6 +14,9 @@ public class Vehicle {
     private VehicleOwner owner;
     private ArrayList<VehicleCheckup> checkups;
 
+    public Vehicle() {
+    }
+
     public Vehicle(int id, String plates, String model, String manufacturer, Category category, VehicleOwner owner) {
         this.id = id;
         this.plates = plates;
@@ -52,9 +55,6 @@ public class Vehicle {
         }else{
             throw new WrongCategoryException("Please, enter value category");
         }
-    }
-
-    public Vehicle() {
     }
 
     public Vehicle(int id, String plates, String model, String manufacturer, Category category, VehicleOwner owner, ArrayList<VehicleCheckup> checkups) {
