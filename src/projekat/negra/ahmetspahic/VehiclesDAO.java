@@ -61,9 +61,9 @@ public class VehiclesDAO {
             dodajDrzavuUpit = conn.prepareStatement("INSERT INTO drzava VALUES(?,?,?)");
             odrediIdDrzaveUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM drzava");
 
-            dodajLetoveUpit = conn.prepareStatement("INSERT INTO letovi VALUES(?,?,?)");
-            odrediIdLetaUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM letovi");
-            dajLetoveUpit = conn.prepareStatement("SELECT * FROM letovi");
+            //dodajLetoveUpit = conn.prepareStatement("INSERT INTO letovi VALUES(?,?,?)");
+            //odrediIdLetaUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM letovi");
+            //dajLetoveUpit = conn.prepareStatement("SELECT * FROM letovi");
 
             promijeniGradUpit = conn.prepareStatement("UPDATE grad SET naziv=?, broj_stanovnika=?, drzava=? WHERE id=?");
 
@@ -90,7 +90,7 @@ public class VehiclesDAO {
             deleteOwnersQuery = conn.prepareStatement("DELETE FROM owner");
 
             addCheckupQuery = conn.prepareStatement("INSERT INTO checkup VALUES(?,?,?,?,?,?,?,?,?)");
-            getCheckupQuery = conn.prepareStatement("SELECT * FROM chechkup WHERE id=?");
+            getCheckupQuery = conn.prepareStatement("SELECT * FROM checkup WHERE id=?");
             getCheckupsQuery = conn.prepareStatement("SELECT * FROM checkup");
             getCheckupsByVehicleQuery = conn.prepareStatement("SELECT * FROM checkup WHERE vehicle_id=?");
             getCheckupIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM checkup");

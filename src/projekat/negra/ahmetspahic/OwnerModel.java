@@ -15,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class OwnerModel {
         }
     }
 
-    public void napuni() {
+    public void addOwners() {
             for (VehicleOwner owner : VehiclesDAO.getInstance().getVehicleOwnerList()) {
                 allOwners.add(owner);
             }

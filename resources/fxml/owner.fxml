@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projekat.negra.ahmetspahic.VehicleOwnerController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.4-internal" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <GridPane fx:id="glavni" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+        <GridPane fx:id="main" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
                 <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
@@ -27,13 +27,13 @@
                 <Label text="Upin:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label text="Adress:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label text="Date of birth:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="firstNameField" GridPane.columnIndex="2" />
+                <TextField fx:id="firstNameField" GridPane.columnIndex="2" GridPane.rowIndex="0" />
                 <TextField fx:id="lastNameField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <TextField fx:id="upinField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <TextField fx:id="adressField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label layoutX="263.0" layoutY="157.0" text="Phone number:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField layoutX="349.0" layoutY="83.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField fx:id="phoneField" layoutX="349.0" layoutY="153.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="Phone number:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="phoneField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             </children>
             <BorderPane.margin>
                 <Insets />
@@ -43,9 +43,9 @@
     <bottom>
         <ButtonBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <buttons>
-                <Button mnemonicParsing="false" onAction="#dodaj" text="Add " />
-                <Button mnemonicParsing="false" onAction="#kraj" text="Delete " />
-            <Button layoutX="314.0" layoutY="10.0" mnemonicParsing="false" onAction="#dodaj" text="Ok" />
+                <Button mnemonicParsing="false" onAction="#add" text="Add " />
+                <Button mnemonicParsing="false" onAction="#delete" text="Delete " />
+            <Button layoutX="314.0" layoutY="10.0" mnemonicParsing="false" onAction="#ok" text="Ok" />
             </buttons>
             <BorderPane.margin>
                 <Insets top="10.0" />

@@ -27,6 +27,10 @@ public class VehicleOwner {
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
     }
 
+    public VehicleOwner(String s, String s1, String s2, String s3, String s4) {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -84,9 +88,13 @@ public class VehicleOwner {
     }
     
     public SimpleStringProperty firstNameProperty(){return firstName;}
+
     public SimpleStringProperty lastNameProperty(){return lastName;}
+
     public SimpleStringProperty upinProperty(){return upin;}
+
     public SimpleStringProperty adressProperty(){return adress;}
+
     public SimpleStringProperty phoneProperty(){return phoneNumber;}
 
 }

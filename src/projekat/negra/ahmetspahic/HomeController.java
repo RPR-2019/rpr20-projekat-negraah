@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
+
     public TableView<Vehicle> tableViewVehicle;
     public TableColumn colVehiclePlates;
     public TableColumn colVehicleModel;
@@ -43,30 +44,19 @@ public class HomeController {
        // colVehicleLastCheckupDate.setCellValueFactory(data -> new SimpleDateFormat(data.getValue().getCheckups().get(0)));
     }
 
-    /*public void actionAddVehicle(ActionEvent actionEvent){
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
-            OwnerController owner = new VehicleOwner(null, dao.getVehicleOwner());
-            loader.setController(gradController);
-            root = loader.load();
-            stage.setTitle("Grad");
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true);
-            stage.show();
 
-            stage.setOnHiding( event -> {
-                Grad grad = gradController.getGrad();
-                if (grad != null) {
-                    dao.dodajGrad(grad);
-                    listGradovi.setAll(dao.gradovi());
-                }
-            } );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void actionAddVehicle(){}
+
+    public void actionUpdateVehicle(){}
+
+    public void actionDeleteVehicle(){}
+
+    public void actionVehicleDetails(){}
+
+    public void actionShowOwners(){
 
     }
-*/
+
+    public void actionAddCheckup(){}
+
 }
