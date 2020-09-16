@@ -8,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 
 public class VehicleDetailsController {
@@ -50,6 +51,44 @@ public class VehicleDetailsController {
 
     }
 
-    public void clickOk(ActionEvent actionEvent){}
-    public void clickCancel(ActionEvent actionEvent){}
+    public void addVehicle(){
+        vehicle = new Vehicle();
+        vehicle.setPlates(fldPlates.getText());
+        vehicle.setModel(fldModel.getText());
+        vehicle.setManufacturer(fldManufacturer.getText());
+        vehicle.setCategory(choiceCategory.getValue());
+        vehicle.setOwner(choiceOwner.getValue());
+
+        dao.addVehicle(vehicle);
+    }
+
+    public void updateVehicle(){
+        vehicle.setPlates(fldPlates.getText());
+        vehicle.setModel(fldModel.getText());
+        vehicle.setManufacturer(fldManufacturer.getText());
+        vehicle.setCategory(choiceCategory.getValue());
+        vehicle.setOwner(choiceOwner.getValue());
+
+        dao.updateVehicle(vehicle);
+    }
+
+    public void clickOk(ActionEvent actionEvent){
+        if(vehicle==null){
+            addVehicle();
+        }else{
+            updateVehicle();
+        }
+
+        closeWindow();
+    }
+    public void clickCancel(ActionEvent actionEvent){closeWindow();}
+
+    private void closeWindow() {
+        Stage stage = (Stage) fldModel.getScene().getWindow();
+        stage.close();
+    }
+
+    public Vehicle getVehicle(){
+        return vehicle;
+    }
 }
