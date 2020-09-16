@@ -45,13 +45,29 @@ public class HomeController {
     }
 
 
-    public void actionAddVehicle(){}
-
-    public void actionUpdateVehicle(){}
+    public void actionAddVehicle() throws IOException {
+        Stage vehicleStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
+        VehicleDetailsController ctrl = new VehicleDetailsController(null);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        vehicleStage.setTitle("Customers");
+        vehicleStage.setScene(new Scene(root, 600, 400));
+        vehicleStage.show();
+    }
 
     public void actionDeleteVehicle(){}
 
-    public void actionVehicleDetails(){}
+    public void actionVehicleDetails() throws IOException {
+        Stage vehicleStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
+        VehicleDetailsController ctrl = new VehicleDetailsController(tableViewVehicle.getSelectionModel().getSelectedItem());
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        vehicleStage.setTitle("Vehicle details");
+        vehicleStage.setScene(new Scene(root, 600, 400));
+        vehicleStage.show();
+    }
 
     public void actionShowOwners() throws IOException {
         Stage ownerStage = new Stage();
@@ -64,6 +80,16 @@ public class HomeController {
         ownerStage.show();
     }
 
-    public void actionAddCheckup(){}
+    public void actionAddCheckup() throws IOException {
+        Stage checkupStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/checkup.fxml"));
+        CheckupController ctrl = new CheckupController(tableViewVehicle.getSelectionModel().getSelectedItem());
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        checkupStage.setTitle("Add checkup");
+        checkupStage.setScene(new Scene(root, 600, 400));
+        checkupStage.show();
+    }
+
 
 }

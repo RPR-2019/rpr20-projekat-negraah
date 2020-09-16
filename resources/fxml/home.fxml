@@ -4,14 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="240.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.4-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="240.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <TableView fx:id="tableViewVehicle" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="colVehiclePlates" prefWidth="107.0" text="Plates" />
           <TableColumn fx:id="colVehicleModel" prefWidth="112.0" text="Model" />
           <TableColumn fx:id="colVehicleOwner" prefWidth="109.0" text="Owner" />
-          <TableColumn fx:id="colVehicleLastCheckupDate" minWidth="0.0" prefWidth="151.0" text="Last checkup date" />
+          <TableColumn fx:id="colVehicleLastCheckupDate" minWidth="0.0" prefWidth="148.0" text="Last checkup date" />
         </columns>
       </TableView>
    </center>
@@ -19,7 +19,6 @@
       <VBox prefHeight="400.0" prefWidth="123.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnAddVehicle" mnemonicParsing="false" onAction="#actionAddVehicle" prefWidth="Infinity" text="Add vehicle" />
-            <Button fx:id="btnUpdateVehicle" mnemonicParsing="false" onAction="#actionUpdateVehicle" prefWidth="Infinity" text="Update vehicle" />
             <Button fx:id="btnDeleteVehicle" mnemonicParsing="false" onAction="#actionDeleteVehicle" prefWidth="Infinity" text="Delete vehicle" />
             <Button fx:id="btnVehicleDetails" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#actionVehicleDetails" prefWidth="Infinity" text="Vehicle details" />
             <Button fx:id="btnShowOwners" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#actionShowOwners" prefWidth="Infinity" text="Show owners" />

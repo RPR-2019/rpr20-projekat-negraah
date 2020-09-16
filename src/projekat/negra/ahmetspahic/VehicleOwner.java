@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class VehicleOwner {
     private int id;
@@ -100,5 +101,18 @@ public class VehicleOwner {
     @Override
     public String toString() {
         return lastName.get() + " " + firstName.get();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleOwner owner = (VehicleOwner) o;
+        return id == owner.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

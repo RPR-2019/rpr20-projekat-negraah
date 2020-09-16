@@ -389,7 +389,7 @@ public class VehiclesDAO {
     public ArrayList<VehicleCheckup> getVehicleCheckupList() {
         ArrayList<VehicleCheckup> resultList = new ArrayList();
         try {
-            ResultSet rs = getCheckupQuery.executeQuery();
+            ResultSet rs = getCheckupsQuery.executeQuery();
             while (rs.next()) {
                 VehicleCheckup checkups = getCheckupFromResultSet(rs);
                 resultList.add(checkups);

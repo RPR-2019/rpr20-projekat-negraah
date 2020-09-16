@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 	`owner_id` INTEGER,
 	PRIMARY KEY(`id`)
 );
+INSERT INTO `vehicle` VALUES (1,'E22-022','Range Rover', 'Land Rover', 'B', 1);
+INSERT INTO `vehicle` VALUES (2,'B11-555','Q7', 'Audi', 'B', 1);
 CREATE TABLE IF NOT EXISTS `checkup` (
 	`id`	INTEGER,
 	`vehicle_id` INTEGER,

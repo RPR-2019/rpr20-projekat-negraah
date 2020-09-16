@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.4-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ListView fx:id="lvlCheckups" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4" />
+      <Label text="Model:" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+      <TextField fx:id="fldPlates" GridPane.columnIndex="1" />
+      <Label layoutX="10.0" layoutY="69.0" text="Plates:">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+      <Label layoutX="10.0" layoutY="35.0" text="Owner:" GridPane.rowIndex="4">
+         <padding>
+            <Insets left="5.0" />
+         </padding></Label>
+      <Label layoutX="10.0" layoutY="35.0" text="Category:" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+      <Label layoutX="10.0" layoutY="35.0" text="Manufacturer:" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+      <TextField fx:id="fldModel" layoutX="210.0" layoutY="31.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="fldManufacturer" layoutX="210.0" layoutY="98.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ChoiceBox fx:id="choiceCategory" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ChoiceBox fx:id="choiceOwner" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label layoutX="10.0" layoutY="236.0" text="Checkup list:" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </Label>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+        <buttons>
+          <Button fx:id="btnOk" mnemonicParsing="false" onAction="#clickOk" text="Ok" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#clickCancel" text="Cancel" />
+        </buttons>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </ButtonBar>
+   </children>
+</GridPane>
