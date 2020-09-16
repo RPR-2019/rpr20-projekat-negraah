@@ -53,8 +53,15 @@ public class HomeController {
 
     public void actionVehicleDetails(){}
 
-    public void actionShowOwners(){
-
+    public void actionShowOwners() throws IOException {
+        Stage ownerStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/owner.fxml"));
+        OwnerController ctrl = new OwnerController(new OwnerModel());
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        ownerStage.setTitle("Customers");
+        ownerStage.setScene(new Scene(root, 600, 400));
+        ownerStage.show();
     }
 
     public void actionAddCheckup(){}

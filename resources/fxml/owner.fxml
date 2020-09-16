@@ -21,7 +21,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ListView prefHeight="256.0" prefWidth="248.0" GridPane.rowSpan="6" />
+                <ListView fx:id="ownersListView" prefHeight="256.0" prefWidth="248.0" GridPane.rowSpan="6" />
                 <Label text="First name:" GridPane.columnIndex="1" />
                 <Label text="Last name:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="Upin:" GridPane.columnIndex="1" GridPane.rowIndex="2" />

@@ -331,7 +331,7 @@ public class VehiclesDAO {
     }
 
     private VehicleOwner getOwnerFromResultSet(ResultSet rs) throws SQLException {
-        return new VehicleOwner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), rs.getString(7));
+        return new VehicleOwner(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4) == null ?  null : rs.getDate(4).toLocalDate(), rs.getInt(5), rs.getString(6), rs.getString(7));
     }
 
     public ArrayList<VehicleOwner> getVehicleOwnerList() {

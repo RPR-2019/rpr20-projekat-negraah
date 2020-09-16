@@ -1,5 +1,7 @@
 package projekat.negra.ahmetspahic;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,15 +28,20 @@ public class OwnerController {
     public TextField upinField;
     public TextField adressField;
     public TextField phoneField;
+    private VehiclesDAO dao;
+    private ObservableList<VehicleOwner> ownerList;
+    public ListView<VehicleOwner> ownersListView;
     private OwnerModel model;
 
     public OwnerController(OwnerModel model) {
+        dao = VehiclesDAO.getInstance();
         this.model = model;
+        ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
     }
 
     @FXML
     public void initialize() {
-/*
+        ownersListView.setItems(ownerList);
         model.currentOwnerProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
             if (oldKorisnik != null) {
                 firstNameField.textProperty().unbindBidirectional(oldKorisnik.firstNameProperty() );
@@ -108,7 +115,6 @@ public class OwnerController {
                 phoneField.getStyleClass().add("poljeNijeIspravno");
             }
         });
-        */
 
     }
 
