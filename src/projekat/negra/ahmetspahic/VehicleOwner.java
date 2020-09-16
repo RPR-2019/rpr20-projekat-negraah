@@ -97,4 +97,8 @@ public class VehicleOwner {
 
     public SimpleStringProperty phoneProperty(){return phoneNumber;}
 
+    @Override
+    public String toString() {
+        return lastName.get() + " " + firstName.get();
+    }
 }
