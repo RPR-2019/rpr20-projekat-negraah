@@ -45,7 +45,7 @@ public class HomeController {
     }
 
 
-    public void actionAddVehicle() throws IOException {
+    public void actionAddVehicle(ActionEvent actionEvent) throws IOException {
         Stage vehicleStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
         VehicleDetailsController ctrl = new VehicleDetailsController(null);
@@ -56,9 +56,12 @@ public class HomeController {
         vehicleStage.show();
     }
 
-    public void actionDeleteVehicle(){}
+    public void actionDeleteVehicle(ActionEvent actionEvent){
+        dao.deleteVehicle(tableViewVehicle.getSelectionModel().getSelectedItem().getId());
+        listVehicles.remove(tableViewVehicle.getSelectionModel().getSelectedItem());
+    }
 
-    public void actionVehicleDetails() throws IOException {
+    public void actionVehicleDetails(ActionEvent actionEvent) throws IOException {
         Stage vehicleStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
         VehicleDetailsController ctrl = new VehicleDetailsController(tableViewVehicle.getSelectionModel().getSelectedItem());
@@ -69,7 +72,7 @@ public class HomeController {
         vehicleStage.show();
     }
 
-    public void actionShowOwners() throws IOException {
+    public void actionShowOwners(ActionEvent actionEvent) throws IOException {
         Stage ownerStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/owner.fxml"));
         OwnerController ctrl = new OwnerController(new OwnerModel());
@@ -80,7 +83,7 @@ public class HomeController {
         ownerStage.show();
     }
 
-    public void actionAddCheckup() throws IOException {
+    public void actionAddCheckup(ActionEvent actionEvent) throws IOException {
         Stage checkupStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/checkup.fxml"));
         CheckupController ctrl = new CheckupController(tableViewVehicle.getSelectionModel().getSelectedItem());

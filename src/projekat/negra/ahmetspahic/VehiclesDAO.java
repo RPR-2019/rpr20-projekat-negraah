@@ -473,14 +473,9 @@ public class VehiclesDAO {
     }
         public void deleteVehicle(int id) {
             try {
-                getVehicleIdQuery.setInt(1, id);
-                ResultSet rs = getVehicleIdQuery.executeQuery();
-                if (!rs.next()) return;
-                Vehicle vehicle = getVehicleFromResultSet(rs);
-
-                deleteVehicleQuery.setInt(1, vehicle.getId());
+                deleteVehicleQuery.setInt(1, id);
                 deleteVehicleQuery.executeUpdate();
-            } catch (SQLException | WrongCategoryException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
     }
