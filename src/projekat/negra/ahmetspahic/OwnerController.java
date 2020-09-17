@@ -42,6 +42,12 @@ public class OwnerController {
     @FXML
     public void initialize() {
         ownersListView.setItems(ownerList);
+
+        ownersListView.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
+            model.setCurrentOwner(newKorisnik);
+            ownersListView.refresh();
+        });
+
         model.currentOwnerProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
             if (oldKorisnik != null) {
                 firstNameField.textProperty().unbindBidirectional(oldKorisnik.firstNameProperty() );

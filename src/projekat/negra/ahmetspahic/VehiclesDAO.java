@@ -85,7 +85,7 @@ public class VehiclesDAO {
             getOwnerQuery = conn.prepareStatement("SELECT * FROM owner WHERE id=?");
             getOwnersQuery = conn.prepareStatement("SELECT * FROM owner");
             getOwnerIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM owner");
-            updateOwnerQuery = conn.prepareStatement("UPDATE owner SET id=?, first_name=?, last_name=?, date_of_birth=?, upin=?, adress=?, phone_number=?");
+            updateOwnerQuery = conn.prepareStatement("UPDATE owner SET first_name=?, last_name=?, date_of_birth=?, upin=?, adress=?, phone_number=? WHERE id=?");
             deleteOwnerQuery = conn.prepareStatement("DELETE FROM owner WHERE id=?");
             deleteOwnersQuery = conn.prepareStatement("DELETE FROM owner");
 
@@ -94,7 +94,7 @@ public class VehiclesDAO {
             getCheckupsQuery = conn.prepareStatement("SELECT * FROM checkup");
             getCheckupsByVehicleQuery = conn.prepareStatement("SELECT * FROM checkup WHERE vehicle_id=?");
             getCheckupIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM checkup");
-            updateCheckupQuery = conn.prepareStatement("UPDATE checkup SET id=?, vehicle_id=?, checkup_time=?, passed_engine=?, passed_brakes=?, passed_emissions=?, passed_accumulator=?, passed_electronics=?, passed_lighting=?");
+            updateCheckupQuery = conn.prepareStatement("UPDATE checkup SET vehicle_id=?, checkup_time=?, passed_engine=?, passed_brakes=?, passed_emissions=?, passed_accumulator=?, passed_electronics=?, passed_lighting=? where id=?");
             deleteCheckupByVehicleQuery = conn.prepareStatement("DELETE FROM checkup WHERE vehicle_id=?");
             deleteCheckupsQuery = conn.prepareStatement("DELETE FROM checkup");
             deleteCheckupQuery = conn.prepareStatement("SELECT * FROM checkup WHERE id=?");
@@ -557,12 +557,11 @@ public class VehiclesDAO {
         try {
             updateOwnerQuery.setString(1, owner.getFirstName());
             updateOwnerQuery.setString(2, owner.getLastName());
-            updateOwnerQuery.setDate(3, Date.valueOf(owner.getDateOfBirth()));
+            updateOwnerQuery.setDate(3, null/*Date.valueOf(owner.getDateOfBirth())*/);
             updateOwnerQuery.setInt(4, owner.getUpin());
             updateOwnerQuery.setString(5, owner.getAdress());
             updateOwnerQuery.setString(6, owner.getPhoneNumber());
-            updateOwnerQuery.setString(7, owner.getPhoneNumber());
-            updateOwnerQuery.setInt(8, owner.getId());
+            updateOwnerQuery.setInt(7, owner.getId());
             updateOwnerQuery.executeUpdate();
 
         } catch (SQLException e) {
