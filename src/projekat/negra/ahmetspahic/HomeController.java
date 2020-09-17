@@ -102,6 +102,7 @@ public class HomeController {
     }
 
     public void actionAddCheckup(ActionEvent actionEvent) throws IOException {
+        if(tableViewVehicle.getSelectionModel().getSelectedItem()==null) return;
         Stage checkupStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/checkup.fxml"));
         CheckupController ctrl = new CheckupController(tableViewVehicle.getSelectionModel().getSelectedItem());

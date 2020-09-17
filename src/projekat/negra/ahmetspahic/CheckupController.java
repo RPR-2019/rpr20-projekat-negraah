@@ -33,11 +33,11 @@ public class CheckupController {
 
     @FXML
     public void initialize() {
-        modelLabel.setText("Model: " + vehicle.getModel());
-        manufacturerLabel.setText("Manufacturer: " + vehicle.getManufacturer());
-        platesLabel.setText("Plates: " + vehicle.getPlates());
-        ownerLabel.setText("First and last name: " + vehicle.getOwner().getFirstName() +" "+ vehicle.getOwner().getLastName());
-        categoryLabel.setText("Category: " + vehicle.getCategory().toString());
+            modelLabel.setText("Model: " + vehicle.getModel());
+            manufacturerLabel.setText("Manufacturer: " + vehicle.getManufacturer());
+            platesLabel.setText("Plates: " + vehicle.getPlates());
+            ownerLabel.setText("First and last name: " + vehicle.getOwner().getFirstName() + " " + vehicle.getOwner().getLastName());
+            categoryLabel.setText("Category: " + vehicle.getCategory().toString());
     }
 
     public void clickOk(ActionEvent actionEvent) {
