@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,11 +19,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.chrono.Chronology;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class OwnerController {
     public GridPane main;
+    public DatePicker datePicker;
     public TextField firstNameField;
     public TextField lastNameField;
     public TextField upinField;
@@ -53,7 +56,7 @@ public class OwnerController {
                 firstNameField.textProperty().unbindBidirectional(oldKorisnik.firstNameProperty() );
                 lastNameField.textProperty().unbindBidirectional(oldKorisnik.lastNameProperty() );
                 upinField.textProperty().unbindBidirectional(oldKorisnik.upinProperty() );
-                adressField.textProperty().unbindBidirectional(oldKorisnik.adressProperty() );
+                adressField.textProperty().unbindBidirectional(oldKorisnik.adressProperty());
                 phoneField.textProperty().unbindBidirectional(oldKorisnik.phoneProperty() );
             }
             if (newKorisnik == null) {
@@ -61,6 +64,7 @@ public class OwnerController {
                 lastNameField.setText("");
                 upinField.setText("");
                 adressField.setText("");
+                datePicker.setChronology(null);
                 phoneField.setText("");
             }
             else {
@@ -68,6 +72,7 @@ public class OwnerController {
                 lastNameField.textProperty().bindBidirectional( newKorisnik.lastNameProperty() );
                 upinField.textProperty().bindBidirectional( newKorisnik.upinProperty() );
                 adressField.textProperty().bindBidirectional( newKorisnik.adressProperty() );
+                datePicker.setChronology(Chronology.from(newKorisnik.getDateOfBirth()));
                 phoneField.textProperty().bindBidirectional( newKorisnik.phoneProperty() );
             }
         });
@@ -130,7 +135,13 @@ public class OwnerController {
     }
 
     public void ok(ActionEvent actionEvent) {
-        System.exit(0);
+        model.disconnect();
+        closeWindow();
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) firstNameField.getScene().getWindow();
+        stage.close();
     }
 
     public void delete(ActionEvent actionEvent){

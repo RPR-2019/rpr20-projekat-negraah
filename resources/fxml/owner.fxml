@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.4-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <center>
         <GridPane fx:id="main" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -32,8 +32,8 @@
                 <TextField fx:id="upinField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <TextField fx:id="adressField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Phone number:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <TextField fx:id="phoneField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             </children>
             <BorderPane.margin>
                 <Insets />
