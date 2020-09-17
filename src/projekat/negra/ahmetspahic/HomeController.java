@@ -40,7 +40,7 @@ public class HomeController {
         tableViewVehicle.setItems(listVehicles);
         colVehiclePlates.setCellValueFactory(new PropertyValueFactory("plates"));
         colVehicleModel.setCellValueFactory(new PropertyValueFactory("model"));
-        //colVehicleOwner.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getOwner().getFirstName()));
+        colVehicleOwner.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getOwner().getFirstName()));
        // colVehicleLastCheckupDate.setCellValueFactory(data -> new SimpleDateFormat(data.getValue().getCheckups().get(0)));
     }
 
@@ -78,6 +78,11 @@ public class HomeController {
         vehicleStage.setTitle("Vehicle details");
         vehicleStage.setScene(new Scene(root, 600, 400));
         vehicleStage.show();
+
+        vehicleStage.setOnHiding( event -> {
+            listVehicles = FXCollections.observableArrayList(dao.getVehicles());
+            tableViewVehicle.setItems(listVehicles);
+        } );
     }
 
     public void actionShowOwners(ActionEvent actionEvent) throws IOException {

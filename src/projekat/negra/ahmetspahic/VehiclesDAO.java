@@ -74,7 +74,7 @@ public class VehiclesDAO {
             getVehiclesQuery = conn.prepareStatement("SELECT * FROM vehicle");
             getVehiclesByOwnerQuery = conn.prepareStatement("SELECT * FROM vehicle WHERE owner_id=?");
             getVehicleIdQuery = conn.prepareStatement("SELECT MAX(id)+1 FROM vehicle");
-            updateVehicleQuery = conn.prepareStatement("UPDATE vehicle SET id=?, plates=?, model=?, manufacturer=?, category=?, owner_id=?");
+            updateVehicleQuery = conn.prepareStatement("UPDATE vehicle SET plates=?, model=?, manufacturer=?, category=?, owner_id=? WHERE id=?");
            // deleteOwnerByVehicle = conn.prepareStatement("DELETE FROM owner WHERE vehicle=?");
             deleteVehiclesByOwnerQuery = conn.prepareStatement("DELETE FROM vehicle WHERE owner_id=?");
             deleteVehicleQuery = conn.prepareStatement("DELETE FROM vehicle WHERE id=?");
