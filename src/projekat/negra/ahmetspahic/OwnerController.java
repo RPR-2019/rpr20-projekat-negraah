@@ -162,6 +162,8 @@ public class OwnerController {
 
     public void delete(ActionEvent actionEvent){
         model.deleteCurrent();
+        ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
+        ownersListView.setItems(ownerList);
     }
 
 

@@ -492,15 +492,11 @@ public class VehiclesDAO {
 
        public void deleteOwner(int id) {
         try {
-            getOwnerQuery.setInt(1, id);
-            ResultSet rs = getOwnerQuery.executeQuery();
-            if (!rs.next()) return;
-            VehicleOwner owner = getOwnerFromResultSet(rs);
 
-            deleteVehiclesByOwnerQuery.setInt(1, owner.getId());
+            deleteVehiclesByOwnerQuery.setInt(1, id);
             deleteVehiclesByOwnerQuery.executeUpdate();
 
-            deleteOwnerQuery.setInt(1, owner.getId());
+            deleteOwnerQuery.setInt(1, id);
             deleteOwnerQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
