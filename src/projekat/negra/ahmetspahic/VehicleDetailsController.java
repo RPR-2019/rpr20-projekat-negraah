@@ -30,7 +30,7 @@ public class VehicleDetailsController {
         this.vehicle = vehicle;
         listCategory = FXCollections.observableArrayList(Vehicle.Category.values());
         ownerList =FXCollections.observableArrayList(dao.getVehicleOwnerList());
-        checkupList = FXCollections.observableArrayList(dao.getVehicleCheckupList());
+        checkupList = FXCollections.observableArrayList(vehicle.getCheckups());
 
     }
 

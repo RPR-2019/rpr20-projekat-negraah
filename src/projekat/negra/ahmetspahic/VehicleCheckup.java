@@ -99,4 +99,13 @@ public class VehicleCheckup {
     public void setPassedLighting(boolean passedLighting) {
         this.passedLighting = passedLighting;
     }
+
+    public boolean isGood(){
+        return isPassedEngine() & isPassedBrakes() & isPassedEmissions() & isPassedAccumulator() & isPassedElectronics() & isPassedLighting();
+    }
+
+    @Override
+    public String toString() {
+        return (isGood() ? "Passed" : "Failed") + " on " + this.getCheckupTime().toString();
+    }
 }

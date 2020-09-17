@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 public class CheckupController {
     public CheckBox engineCheck;
@@ -21,8 +24,10 @@ public class CheckupController {
     public Label ownerLabel;
     public Label categoryLabel;
     private Vehicle vehicle;
+    private VehiclesDAO dao;
 
     public CheckupController(Vehicle vehicle) {
+        dao = VehiclesDAO.getInstance();
         this.vehicle = vehicle;
     }
 
@@ -36,10 +41,27 @@ public class CheckupController {
     }
 
     public void clickOk(ActionEvent actionEvent) {
-        System.exit(0);
+        VehicleCheckup checkup = new VehicleCheckup();
+        checkup.setCheckupTime(LocalDate.now());
+        checkup.setPassedEngine(engineCheck.isSelected());
+        checkup.setPassedBrakes(brakeCheck.isSelected());
+        checkup.setPassedEmissions(emissionsCheck.isSelected());
+        checkup.setPassedAccumulator(accumulatorCheck.isSelected());
+        checkup.setPassedElectronics(electronicsCheck.isSelected());
+        checkup.setPassedLighting(ligtingCheck.isSelected());
+        checkup.setVehicle(vehicle);
+
+        dao.addVehicleCheckup(checkup);
+
+        closeWindow();
     }
 
     public void clickCancel(ActionEvent actionEvent){
-        System.exit(0);
+        closeWindow();
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) categoryLabel.getScene().getWindow();
+        stage.close();
     }
 }

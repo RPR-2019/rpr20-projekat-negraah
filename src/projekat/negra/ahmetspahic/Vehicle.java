@@ -57,12 +57,12 @@ public class Vehicle {
         }
     }
 
-    public Vehicle(int id, String plates, String model, String manufacturer, Category category, VehicleOwner owner, ArrayList<VehicleCheckup> checkups) {
+    public Vehicle(int id, String plates, String model, String manufacturer, String category, VehicleOwner owner, ArrayList<VehicleCheckup> checkups) throws WrongCategoryException {
         this.id = id;
         this.plates = plates;
         this.model = model;
         this.manufacturer = manufacturer;
-        this.category = category;
+        this.category = stringToCategory(category);
         this.owner = owner;
         this.checkups = checkups;
     }

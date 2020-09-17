@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class VehiclesDAO {
     private static VehiclesDAO instance;
@@ -357,7 +358,16 @@ public class VehiclesDAO {
 
     private Vehicle getVehicleFromResultSet(ResultSet rs) throws SQLException, WrongCategoryException {
         VehicleOwner owner = getVehicleOwner(rs.getInt(6));
-        return new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), owner);
+        getCheckupsByVehicleQuery.setInt(1, rs.getInt(1));
+        ResultSet rs1 = getCheckupsByVehicleQuery.executeQuery();
+
+        ArrayList<VehicleCheckup> checkups;
+        Vehicle vehicle = new Vehicle(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), owner, new ArrayList<>());
+
+        while(rs1.next()){
+            vehicle.getCheckups().add(new VehicleCheckup(rs1.getInt(1), vehicle, rs1.getDate(3).toLocalDate(), rs1.getBoolean(4), rs1.getBoolean(5), rs1.getBoolean(6), rs1.getBoolean(7), rs1.getBoolean(8), rs1.getBoolean(9)));
+        }
+        return vehicle;
     }
 
     public ArrayList<Vehicle> getVehicles() {
