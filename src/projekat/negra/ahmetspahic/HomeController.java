@@ -65,6 +65,7 @@ public class HomeController {
     }
 
     public void actionDeleteVehicle(ActionEvent actionEvent){
+        if(tableViewVehicle.getSelectionModel().getSelectedItem()==null) return;
         dao.deleteVehicle(tableViewVehicle.getSelectionModel().getSelectedItem().getId());
         listVehicles.remove(tableViewVehicle.getSelectionModel().getSelectedItem());
     }
