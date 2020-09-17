@@ -557,7 +557,7 @@ public class VehiclesDAO {
         try {
             updateOwnerQuery.setString(1, owner.getFirstName());
             updateOwnerQuery.setString(2, owner.getLastName());
-            updateOwnerQuery.setDate(3, null/*Date.valueOf(owner.getDateOfBirth())*/);
+            updateOwnerQuery.setDate(3, owner.getDateOfBirth()==null ? null : Date.valueOf(owner.getDateOfBirth()));
             updateOwnerQuery.setInt(4, owner.getUpin());
             updateOwnerQuery.setString(5, owner.getAdress());
             updateOwnerQuery.setString(6, owner.getPhoneNumber());

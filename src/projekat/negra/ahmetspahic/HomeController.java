@@ -25,7 +25,7 @@ public class HomeController {
     public TableView<Vehicle> tableViewVehicle;
     public TableColumn colVehiclePlates;
     public TableColumn colVehicleModel;
-    public TableColumn<Vehicle, LocalDate> colVehicleLastCheckupDate;
+    public TableColumn<Vehicle, String> colVehicleLastCheckupDate;
     public TableColumn<Vehicle,String> colVehicleOwner;
     private VehiclesDAO dao;
     private ObservableList<Vehicle> listVehicles;
@@ -41,7 +41,7 @@ public class HomeController {
         colVehiclePlates.setCellValueFactory(new PropertyValueFactory("plates"));
         colVehicleModel.setCellValueFactory(new PropertyValueFactory("model"));
         colVehicleOwner.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getOwner().getFirstName()));
-       // colVehicleLastCheckupDate.setCellValueFactory(data -> new SimpleDateFormat(data.getValue().getCheckups().get(0)));
+        colVehicleLastCheckupDate.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getLastCheckupString()));
     }
 
 
@@ -94,6 +94,11 @@ public class HomeController {
         ownerStage.setTitle("Customers");
         ownerStage.setScene(new Scene(root, 600, 400));
         ownerStage.show();
+
+        ownerStage.setOnHiding( event -> {
+            listVehicles = FXCollections.observableArrayList(dao.getVehicles());
+            tableViewVehicle.setItems(listVehicles);
+        } );
     }
 
     public void actionAddCheckup(ActionEvent actionEvent) throws IOException {

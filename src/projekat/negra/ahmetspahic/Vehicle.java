@@ -122,4 +122,9 @@ public class Vehicle {
     public void setCheckups(ArrayList<VehicleCheckup> checkups) {
         this.checkups = checkups;
     }
+
+    public String getLastCheckupString() {
+        if(this.checkups.isEmpty()) return "Never checked up";
+        return this.checkups.stream().reduce( (acc, x) -> acc.getCheckupTime().isAfter(x.getCheckupTime()) ?  acc : x).get().getCheckupTime().toString();
+    }
 }

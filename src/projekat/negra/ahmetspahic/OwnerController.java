@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.chrono.Chronology;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -47,6 +49,7 @@ public class OwnerController {
         ownersListView.setItems(ownerList);
 
         ownersListView.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
+            if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
             model.setCurrentOwner(newKorisnik);
             ownersListView.refresh();
         });
@@ -64,7 +67,7 @@ public class OwnerController {
                 lastNameField.setText("");
                 upinField.setText("");
                 adressField.setText("");
-                datePicker.setChronology(null);
+                datePicker.setValue(null);
                 phoneField.setText("");
             }
             else {
@@ -72,12 +75,18 @@ public class OwnerController {
                 lastNameField.textProperty().bindBidirectional( newKorisnik.lastNameProperty() );
                 upinField.textProperty().bindBidirectional( newKorisnik.upinProperty() );
                 adressField.textProperty().bindBidirectional( newKorisnik.adressProperty() );
-                datePicker.setChronology(Chronology.from(newKorisnik.getDateOfBirth()));
+                datePicker.setValue( newKorisnik.getDateOfBirth() );
                 phoneField.textProperty().bindBidirectional( newKorisnik.phoneProperty() );
             }
         });
 
         firstNameField.textProperty().addListener((obs, oldIme, newIme) -> {
+
+            if(model.getCurrentOwner() != null){
+                model.getCurrentOwner().setFirstName(newIme);
+                ownersListView.refresh();
+            }
+
             if (!newIme.isEmpty()) {
                 firstNameField.getStyleClass().removeAll("poljeNijeIspravno");
                 firstNameField.getStyleClass().add("poljeIspravno");
@@ -88,6 +97,12 @@ public class OwnerController {
         });
 
         lastNameField.textProperty().addListener((obs, oldIme, newIme) -> {
+
+            if(model.getCurrentOwner() != null){
+                model.getCurrentOwner().setLastName(newIme);
+                ownersListView.refresh();
+            }
+
             if (!newIme.isEmpty()) {
                 lastNameField.getStyleClass().removeAll("poljeNijeIspravno");
                 lastNameField.getStyleClass().add("poljeIspravno");
@@ -135,6 +150,7 @@ public class OwnerController {
     }
 
     public void ok(ActionEvent actionEvent) {
+        if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
         model.disconnect();
         closeWindow();
     }
