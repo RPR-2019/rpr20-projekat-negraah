@@ -127,4 +127,9 @@ public class Vehicle {
         if(this.checkups.isEmpty()) return "Never checked up";
         return this.checkups.stream().reduce( (acc, x) -> acc.getCheckupTime().isAfter(x.getCheckupTime()) ?  acc : x).get().getCheckupTime().toString();
     }
+
+    @Override
+    public String toString() {
+        return model;
+    }
 }

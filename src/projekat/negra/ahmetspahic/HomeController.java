@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -64,26 +66,49 @@ public class HomeController {
 
     }
 
-    public void actionDeleteVehicle(ActionEvent actionEvent){
-        if(tableViewVehicle.getSelectionModel().getSelectedItem()==null) return;
-        dao.deleteVehicle(tableViewVehicle.getSelectionModel().getSelectedItem().getId());
-        listVehicles.remove(tableViewVehicle.getSelectionModel().getSelectedItem());
+    public void actionDeleteVehicle(ActionEvent actionEvent) {
+        if (tableViewVehicle.getSelectionModel().getSelectedItem() == null) {
+            return;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do  you really want to " +
+                    "delete " + tableViewVehicle.getSelectionModel().getSelectedItem() + " vehicle?",
+                    ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.showAndWait();
+            if(alert.getResult() == ButtonType.YES) {
+                dao.deleteVehicle(tableViewVehicle.getSelectionModel().getSelectedItem().getId());
+                listVehicles.remove(tableViewVehicle.getSelectionModel().getSelectedItem());
+            }else {
+                return;
+            }
+        }
     }
 
     public void actionVehicleDetails(ActionEvent actionEvent) throws IOException {
-        Stage vehicleStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
-        VehicleDetailsController ctrl = new VehicleDetailsController(tableViewVehicle.getSelectionModel().getSelectedItem());
-        loader.setController(ctrl);
-        Parent root = loader.load();
-        vehicleStage.setTitle("Vehicle details");
-        vehicleStage.setScene(new Scene(root, 600, 400));
-        vehicleStage.show();
 
-        vehicleStage.setOnHiding( event -> {
-            listVehicles = FXCollections.observableArrayList(dao.getVehicles());
-            tableViewVehicle.setItems(listVehicles);
-        } );
+        if(tableViewVehicle.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("No vehicle selected");
+            alert.setContentText("Please select a vehicle");
+
+            alert.showAndWait();
+        }else {
+
+            Stage vehicleStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/v-details.fxml"));
+            VehicleDetailsController ctrl = new VehicleDetailsController(tableViewVehicle.getSelectionModel().getSelectedItem());
+            loader.setController(ctrl);
+            Parent root = loader.load();
+            vehicleStage.setTitle("Vehicle details");
+            vehicleStage.setScene(new Scene(root, 600, 400));
+            vehicleStage.show();
+
+            vehicleStage.setOnHiding(event -> {
+                listVehicles = FXCollections.observableArrayList(dao.getVehicles());
+                tableViewVehicle.setItems(listVehicles);
+            });
+
+        }
     }
 
     public void actionShowOwners(ActionEvent actionEvent) throws IOException {
