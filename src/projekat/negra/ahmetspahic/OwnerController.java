@@ -47,7 +47,8 @@ public class OwnerController {
         ownersListView.setItems(ownerList);
 
         ownersListView.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
-            if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );            model.setCurrentOwner(newKorisnik);
+            if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
+            model.setCurrentOwner(newKorisnik);
             ownersListView.refresh();
         });
 
@@ -167,9 +168,17 @@ public class OwnerController {
 
     public void delete(ActionEvent actionEvent){
         if(ownersListView.getSelectionModel().getSelectedItem().getId() == 0) return;
-        model.deleteCurrent();
-        ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
-        ownersListView.setItems(ownerList);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do  you really want to " +
+                "delete owner: " + firstNameField.getText()+ " " + lastNameField.getText(), ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+        if(alert.getResult()==ButtonType.YES) {
+            model.deleteCurrent();
+            ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
+            ownersListView.setItems(ownerList);
+        }else{
+            return;
+        }
     }
 
 
