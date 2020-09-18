@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `owner` (
 	`phone_number` TEXT,
 	PRIMARY KEY(`id`)
 );
+INSERT INTO `owner` VALUES (0,'New','Customer', NULL, 0, '', '');
 INSERT INTO `owner` VALUES (1,'Negra','Ahmetspahić', NULL, 123, 'Kovaci 21', '062357244');
 INSERT INTO `owner` VALUES (2,'Adnan','Šabanović', NULL, 567, 'Ciglane 24', '062813814');
 CREATE TABLE IF NOT EXISTS `vehicle` (

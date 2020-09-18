@@ -43,7 +43,7 @@
     <bottom>
         <ButtonBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <buttons>
-                <Button mnemonicParsing="false" onAction="#add" text="Add " />
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" text="Add " />
                 <Button mnemonicParsing="false" onAction="#delete" text="Delete " />
             <Button layoutX="314.0" layoutY="10.0" mnemonicParsing="false" onAction="#ok" text="Ok" />
             </buttons>

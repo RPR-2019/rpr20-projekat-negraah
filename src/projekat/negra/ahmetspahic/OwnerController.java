@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,6 +30,7 @@ public class OwnerController {
     public TextField upinField;
     public TextField adressField;
     public TextField phoneField;
+    public Button btnAdd;
     private VehiclesDAO dao;
     private ObservableList<VehicleOwner> ownerList;
     public ListView<VehicleOwner> ownersListView;
@@ -49,8 +47,7 @@ public class OwnerController {
         ownersListView.setItems(ownerList);
 
         ownersListView.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
-            if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
-            model.setCurrentOwner(newKorisnik);
+            if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );            model.setCurrentOwner(newKorisnik);
             ownersListView.refresh();
         });
 
@@ -63,6 +60,7 @@ public class OwnerController {
                 phoneField.textProperty().unbindBidirectional(oldKorisnik.phoneProperty() );
             }
             if (newKorisnik == null) {
+                btnAdd.setDisable(true);
                 firstNameField.setText("");
                 lastNameField.setText("");
                 upinField.setText("");
@@ -71,6 +69,8 @@ public class OwnerController {
                 phoneField.setText("");
             }
             else {
+                if(newKorisnik.getId() != 0) btnAdd.setDisable(true);
+                else btnAdd.setDisable(false);
                 firstNameField.textProperty().bindBidirectional( newKorisnik.firstNameProperty() );
                 lastNameField.textProperty().bindBidirectional( newKorisnik.lastNameProperty() );
                 upinField.textProperty().bindBidirectional(newKorisnik.upinProperty());
@@ -142,11 +142,12 @@ public class OwnerController {
             }
         });
 
+        ownersListView.getSelectionModel().selectFirst();
+
     }
 
     public void add(ActionEvent actionEvent) {
-      /*  model.getAllOwners().add(new VehicleOwner("", "", "", "", ""));
-        ownerList.getSelectionModel().selectLast();*/
+
     }
 
     public void ok(ActionEvent actionEvent) {
@@ -161,6 +162,7 @@ public class OwnerController {
     }
 
     public void delete(ActionEvent actionEvent){
+        if(ownersListView.getSelectionModel().getSelectedItem().getId() == 0) return;
         model.deleteCurrent();
         ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
         ownersListView.setItems(ownerList);

@@ -51,7 +51,7 @@ public class HomeController {
         VehicleDetailsController ctrl = new VehicleDetailsController(null);
         loader.setController(ctrl);
         Parent root = loader.load();
-        vehicleStage.setTitle("Customers");
+        vehicleStage.setTitle("Add vehicle");
         vehicleStage.setScene(new Scene(root, 600, 400));
         vehicleStage.show();
 
