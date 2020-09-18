@@ -4,12 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 
@@ -50,6 +54,24 @@ public class VehicleDetailsController {
             choiceCategory.getSelectionModel().select(vehicle.getCategory());
             choiceOwner.getSelectionModel().select(vehicle.getOwner());
         }
+
+        lvlCheckups.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
+            if(lvlCheckups.getSelectionModel().getSelectedItem() != null){
+                Stage checkupStage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/checkup.fxml"));
+                CheckupController ctrl = new CheckupController(lvlCheckups.getSelectionModel().getSelectedItem());
+                loader.setController(ctrl);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                checkupStage.setTitle(lvlCheckups.getSelectionModel().getSelectedItem().toString());
+                checkupStage.setScene(new Scene(root, 600, 400));
+                checkupStage.show();
+            }
+        });
 
     }
 
