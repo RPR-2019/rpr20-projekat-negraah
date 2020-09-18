@@ -70,7 +70,7 @@ public class OwnerModel {
     }
 
     public void setCurrentOwner(int i) {
-        if(this.currentOwner != null && this.currentOwner.get() != null) {
+        if(this.currentOwner != null && this.currentOwner.get() != null && this.currentOwner.get().getId() != 0) {
             VehiclesDAO.getInstance().updateVehicleOwner(this.currentOwner.get());
         }
         this.currentOwner.set(allOwners.get(i));

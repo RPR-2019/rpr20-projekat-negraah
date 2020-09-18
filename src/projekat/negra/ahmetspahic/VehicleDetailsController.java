@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.util.stream.Collectors;
+
 
 public class VehicleDetailsController {
     public TextField fldPlates;
@@ -29,7 +31,7 @@ public class VehicleDetailsController {
         dao = VehiclesDAO.getInstance();
         this.vehicle = vehicle;
         listCategory = FXCollections.observableArrayList(Vehicle.Category.values());
-        ownerList =FXCollections.observableArrayList(dao.getVehicleOwnerList());
+        ownerList =FXCollections.observableArrayList(dao.getVehicleOwnerList().stream().filter(x -> x.getId() != 0).collect(Collectors.toList()));
         if(vehicle!=null)checkupList = FXCollections.observableArrayList(vehicle.getCheckups());
 
     }

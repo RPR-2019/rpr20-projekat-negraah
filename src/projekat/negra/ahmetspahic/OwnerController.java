@@ -147,7 +147,11 @@ public class OwnerController {
     }
 
     public void add(ActionEvent actionEvent) {
-
+        ownersListView.getSelectionModel().getSelectedItem().setDateOfBirth(datePicker.getValue());
+        dao.addVehicleOwner(ownersListView.getSelectionModel().getSelectedItem());
+        ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
+        ownersListView.setItems(ownerList);
+        ownersListView.getSelectionModel().selectFirst();
     }
 
     public void ok(ActionEvent actionEvent) {
