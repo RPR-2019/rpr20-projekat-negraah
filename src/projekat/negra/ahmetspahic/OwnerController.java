@@ -73,10 +73,10 @@ public class OwnerController {
             else {
                 firstNameField.textProperty().bindBidirectional( newKorisnik.firstNameProperty() );
                 lastNameField.textProperty().bindBidirectional( newKorisnik.lastNameProperty() );
-                upinField.textProperty().bindBidirectional( newKorisnik.upinProperty() );
-                adressField.textProperty().bindBidirectional( newKorisnik.adressProperty() );
+                upinField.textProperty().bindBidirectional(newKorisnik.upinProperty());
+                adressField.textProperty().bindBidirectional(newKorisnik.adressProperty());
                 datePicker.setValue( newKorisnik.getDateOfBirth() );
-                phoneField.textProperty().bindBidirectional( newKorisnik.phoneProperty() );
+                phoneField.textProperty().bindBidirectional(newKorisnik.phoneProperty());
             }
         });
 

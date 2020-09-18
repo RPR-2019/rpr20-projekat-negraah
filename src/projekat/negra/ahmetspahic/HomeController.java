@@ -112,6 +112,11 @@ public class HomeController {
         checkupStage.setTitle("Add checkup");
         checkupStage.setScene(new Scene(root, 600, 400));
         checkupStage.show();
+
+        checkupStage.setOnHiding( event -> {
+            listVehicles = FXCollections.observableArrayList(dao.getVehicles());
+            tableViewVehicle.setItems(listVehicles);
+        } );
     }
 
 
