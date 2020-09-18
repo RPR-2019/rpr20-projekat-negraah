@@ -156,7 +156,7 @@ public class OwnerController {
     }
 
     public void ok(ActionEvent actionEvent) {
-        if(model.getCurrentOwner() != null) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
+        if(model.getCurrentOwner() != null && model.getCurrentOwner().getId() != 0) model.getCurrentOwner().setDateOfBirth( datePicker.getValue() );
         model.disconnect();
         closeWindow();
     }
@@ -176,6 +176,7 @@ public class OwnerController {
             model.deleteCurrent();
             ownerList = FXCollections.observableArrayList(dao.getVehicleOwnerList());
             ownersListView.setItems(ownerList);
+            ownersListView.getSelectionModel().selectFirst();
         }else{
             return;
         }

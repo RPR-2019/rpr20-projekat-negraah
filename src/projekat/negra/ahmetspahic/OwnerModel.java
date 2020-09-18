@@ -63,7 +63,7 @@ public class OwnerModel {
     }
 
     public void setCurrentOwner(VehicleOwner currentOwner) {
-        if(this.currentOwner != null && this.currentOwner.get() != null) {
+        if(this.currentOwner != null && this.currentOwner.get() != null && this.currentOwner.get().getId() != 0) {
             VehiclesDAO.getInstance().updateVehicleOwner(this.currentOwner.get());
         }
         this.currentOwner.set(currentOwner);
@@ -77,7 +77,7 @@ public class OwnerModel {
     }
 
     public void disconnect() {
-        if(this.currentOwner != null && this.currentOwner.get() != null) {
+        if(this.currentOwner != null && this.currentOwner.get() != null && this.currentOwner.get().getId() != 0) {
             VehiclesDAO.getInstance().updateVehicleOwner(this.currentOwner.get());
         }
     }
