@@ -85,26 +85,4 @@ public class OwnerModel {
     public void deleteCurrent() {
         VehiclesDAO.getInstance().deleteOwner(currentOwner.get().getId());
     }
-
-    // TODO popraviti ovo
-    public void zapisiDatoteku(File f) {
-        if (f == null) {
-                return;
-        } else {
-            try {
-                Statement statement = conn.createStatement();
-                ResultSet r = statement.executeQuery("select * from korisnik");
-                PrintWriter printWriter = new PrintWriter(f);
-                while (r.next()) {
-                    printWriter.println(r.getString(5) + ":" + r.getString(6) + ":" + r.getInt(1) + ":" + r.getInt(1) + ":" + r.getString(2)
-                            + " " + r.getString(3) + ":" + ":");
-                }
-                printWriter.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
