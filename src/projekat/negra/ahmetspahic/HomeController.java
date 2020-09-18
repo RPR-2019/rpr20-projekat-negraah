@@ -68,6 +68,12 @@ public class HomeController {
 
     public void actionDeleteVehicle(ActionEvent actionEvent) {
         if (tableViewVehicle.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("No vehicle selected");
+            alert.setContentText("Please select a vehicle");
+
+            alert.showAndWait();
             return;
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do  you really want to " +
@@ -128,7 +134,16 @@ public class HomeController {
     }
 
     public void actionAddCheckup(ActionEvent actionEvent) throws IOException {
-        if(tableViewVehicle.getSelectionModel().getSelectedItem()==null) return;
+        if (tableViewVehicle.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("No vehicle selected");
+            alert.setContentText("Please select a vehicle");
+
+            alert.showAndWait();
+            return;
+        }
+
         Stage checkupStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/checkup.fxml"));
         CheckupController ctrl = new CheckupController(tableViewVehicle.getSelectionModel().getSelectedItem());
