@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #292929; -fx-background-image: projekat sl2.jpg;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="408.0" fitWidth="716.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/Fakultet/Druga%20godina/RPR/projekat%20sl1.jpg" />
+         </image>
+         <effect>
+            <Bloom threshold="0.55">
+               <input>
+                  <Lighting diffuseConstant="1.12" specularConstant="0.23" specularExponent="40.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow height="32.86" radius="15.19" width="29.9" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input></Bloom>
+         </effect>
+      </ImageView>
+      <AnchorPane layoutX="180.0" layoutY="34.0" prefHeight="332.0" prefWidth="267.0" style="-fx-background-color: #1F293E;">
+         <children>
+            <TextField layoutX="29.0" layoutY="113.0" prefHeight="37.0" prefWidth="210.0" promptText="username/ email" style="-fx-background-color: &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import javafx.scene.control.TextField?&gt;&lt;TextField/&gt;;">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="54.5" radius="27.21" width="56.34">
+                     <color>
+                        <Color red="0.03947368264198303" green="0.03600146248936653" blue="0.03600146248936653" opacity="0.6399999856948853" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <Button layoutX="78.0" layoutY="243.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="124.0" text="Ok">
+               <effect>
+                  <InnerShadow height="23.97" radius="7.035" width="6.17">
+                     <color>
+                        <Color opacity="0.9956521987915039" />
+                     </color>
+                  </InnerShadow>
+               </effect></Button>
+            <PasswordField layoutX="28.0" layoutY="166.0" prefHeight="37.0" prefWidth="210.0" promptText="password">
+               <effect>
+                  <DropShadow height="52.65" radius="26.747500000000002" width="56.34" />
+               </effect>
+            </PasswordField>
+            <Label contentDisplay="CENTER" layoutX="93.0" layoutY="44.0" prefHeight="49.0" prefWidth="86.0" text="Sign In" textFill="#f8f8f8">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="83.27" radius="50.769999999999996" spread="0.15" width="121.81">
+               <input>
+                  <Lighting diffuseConstant="1.07" specularConstant="0.37" specularExponent="15.35" surfaceScale="2.2">
+                     <bumpInput>
+                        <Shadow blurType="GAUSSIAN" height="26.93" radius="16.6725" width="41.76" />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </input>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
