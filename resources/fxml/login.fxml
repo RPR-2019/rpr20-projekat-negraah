@@ -58,11 +58,14 @@
             </Label>
          </children>
          <effect>
-            <DropShadow height="83.27" radius="50.769999999999996" spread="0.15" width="121.81">
+            <DropShadow height="102.54" radius="55.587500000000006" spread="0.15" width="121.81">
                <input>
                   <Lighting diffuseConstant="1.07" specularConstant="0.37" specularExponent="15.35" surfaceScale="2.2">
                      <bumpInput>
-                        <Shadow blurType="GAUSSIAN" height="26.93" radius="16.6725" width="41.76" />
+                        <Shadow blurType="GAUSSIAN" height="34.345" radius="18.526249999999997" width="41.76">
+                           <input>
+                              <Reflection />
+                           </input></Shadow>
                      </bumpInput>
                      <light>
                         <Light.Distant />

@@ -66,8 +66,6 @@ public class HomeController {
         vehicleStage.setScene(new Scene(root, 600, 400));
         vehicleStage.show();
 
-
-
         vehicleStage.setOnHiding( event -> {
             listVehicles = FXCollections.observableArrayList(dao.getVehicles());
             tableViewVehicle.setItems(listVehicles);
